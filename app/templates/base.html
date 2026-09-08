@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en" class="h-full">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}{{ app_name }}{% endblock %}</title>
+  <meta name="description" content="{% block description %}Milestones, documents and deadlines for India's semiconductor and electronics incentive schemes, with a source citation on every fact.{% endblock %}">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/htmx.org@1.9.12" defer></script>
+  <style>
+    /* System stack only — no web fonts, to keep pages under 200 KB. */
+    html { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+    @media print {
+      .no-print { display: none !important; }
+      body { background: #fff; }
+      a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 0.75rem; word-break: break-all; }
+    }
+  </style>
+  {% block head_extra %}{% endblock %}
+</head>
+<body class="h-full bg-slate-50 text-slate-900 flex flex-col">
+
+  <header class="no-print border-b border-slate-200 bg-white">
+    <div class="mx-auto max-w-5xl px-4 py-4 flex flex-wrap items-center justify-between gap-3">
+      <a href="/" class="text-base font-semibold tracking-tight text-slate-900">
+        India Semiconductor Incentive Tracker
+      </a>
+      <nav class="flex items-center gap-5 text-sm">
+        {% block nav %}{% endblock %}
+      </nav>
+    </div>
+  </header>
+
+  <main class="flex-1">
+    <div class="mx-auto max-w-5xl px-4 py-8">
+      {% block content %}{% endblock %}
+    </div>
+  </main>
+
+  <footer class="border-t border-slate-200 bg-white">
+    <div class="mx-auto max-w-5xl px-4 py-6 space-y-3">
+      <p class="rounded border border-amber-300 bg-amber-50 px-3 py-2 text-sm text-amber-900">
+        {{ disclaimer }}
+      </p>
+      <p class="no-print text-xs text-slate-500">
+        &copy; {{ now_year }} {{ app_name }}.
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>
